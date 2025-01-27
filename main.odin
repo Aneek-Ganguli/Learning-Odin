@@ -31,22 +31,34 @@ main :: proc() {
 
 			if (event.type == SDL.EventType.KEYDOWN) {
 				if (event.key.keysym.sym == SDL.Keycode.d) {
-					setPos(&entity, entity.x + 1, entity.y)
+					setPos(&entity, entity.x + 5, entity.y)
 				}
 				if (event.key.keysym.sym == SDL.Keycode.A) {
-					setPos(&entity, entity.x - 1, entity.y)
+					setPos(&entity, entity.x - 5, entity.y)
+				}
+				if (event.key.keysym.sym == SDL.Keycode.SPACE) {
+					entity.y = -10
 				}
 				//its not much
 			}
 
 		}
 
-		if (entity.y > 800) {
+		if (entity.y > 1024) {
 			entity.y = 0
 		}
 
+		//1280
+		if entity.x < 0 {
+			entity.x = 0
+		}
+
+		if (entity.x > (1280 - 64)) {
+			entity.x = (1280 - 64)
+		}
+
 		clear(&window)
-		setPos(&entity, entity.x, entity.y + 10)
+		setPos(&entity, entity.x, entity.y + 5)
 		renderEntity(&window, &entity)
 		//setPos(&entity, entity.x + 1, 0) //entity.y + 1)
 		display(&window)
